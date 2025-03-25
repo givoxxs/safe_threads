@@ -1,0 +1,103 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Transformer models cache
+model_cache/
+.cache/
+/app/model_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.env
+.venv
+env/
+env.bak/
+venv.bak/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker-specific
+.dockerignore
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Azure-specific
+*.publishsettings
+PublishScripts/
+azure-deployment/
+.azure/
+
+# PyTorch/model files
+*.pt
+*.pth
+*.onnx
+*.h5
+torch_dumps/
+
+# Large data files
+*.csv
+*.json
+*.ndjson
+/data/
+/datasets/
+
+# Swap files
+*.swp
+*.swa

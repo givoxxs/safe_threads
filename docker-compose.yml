@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128
+    deploy:
+      resources:
+        limits:
+          cpus: '0.9'  # Reserve some CPU for the OS
+          memory: 1.8G  # Reserve some memory for the OS
+    restart: unless-stopped
+    volumes:
+      - model_cache:/app/model_cache
+
+volumes:
+  model_cache:
