@@ -68,3 +68,23 @@ docker run -p 8000:8000 toxic-content-classifier
 When the server is running, visit:
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
+
+## Performance Considerations
+
+### Expected Performance on Azure Standard B1ms (1 vCPU, 2 GiB RAM)
+
+With the current optimization settings:
+- Maximum concurrent users: ~15-20 users/second
+- Average response time: 400-800ms for single text classification
+- Batch processing: Recommended for higher throughput (5-10 texts per batch)
+
+Performance bottlenecks:
+1. **Memory constraint (2GB RAM)**: The transformer model requires ~800-1000MB of RAM
+2. **CPU limitation (1 vCPU)**: Text classification is CPU-intensive
+3. **Burst capabilities**: The B1ms instance can burst CPU performance for short periods
+
+Recommendations for higher throughput:
+- Use batch endpoint instead of individual requests
+- Implement client-side rate limiting
+- Consider implementing a queuing mechanism for production workloads
+- Monitor memory usage and restart the service if it exceeds 80% RAM utilization
