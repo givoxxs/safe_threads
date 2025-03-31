@@ -31,5 +31,6 @@ jobs:
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
             docker stop fastapi-app || true
-            docker rm fastapi-app || true
-            docker run -d -p 80:8000 --name fastapi-app ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
+            docker rm -f fastapi-app || true
+            docker container prune -f
+            docker run -d --restart=always -p 80:8000 --name fastapi-app ${{ secrets.DOCKER_USERNAME }}/fastapi-app:latest
