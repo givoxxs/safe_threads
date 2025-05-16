@@ -14,7 +14,7 @@ RUN mkdir -p /app/model_cache
 # Cài đặt dependencies từ requirements.txt
 COPY requirements.txt .
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt || cat /root/.cache/pip/log/*
+    pip install --no-cache-dir -r requirements.txt 
 
 # Thiết lập biến môi trường
 ENV PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128
