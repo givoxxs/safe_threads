@@ -2,21 +2,28 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Cài đặt các gói cần thiết
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Add memory optimization for transformer models
+# Tạo cache directory trước
+RUN mkdir -p /app/model_cache
+
+# Cài đặt dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Thiết lập biến môi trường
 ENV PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:128
 ENV HF_HOME=/app/model_cache
 
-# Copy application code
+# Sao chép code ứng dụng
 COPY . .
 
-# Create cache directory
-RUN mkdir -p /app/model_cache
-
-# Expose port
+# Mở cổng
 EXPOSE 8000
 
 # Sử dụng Gunicorn với UvicornWorker cho FastAPI
